@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-light-bg text-light-text font-sans antialiased overflow-x-hidden;
+  }
+  
+  .dark body {
+    @apply bg-dark-bg text-dark-text;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.glass {
+  @apply bg-white/70 backdrop-blur-md dark:bg-black/30 shadow-lg;
+}
+
+/* ── Hero Star / Particle ── */
+.hero-star {
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(14, 165, 233, 0.6));
+  box-shadow: 0 0 4px 1px rgba(14, 165, 233, 0.5);
+  animation: hero-twinkle var(--dur, 4s) var(--delay, 0s) ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes hero-twinkle {
+  0%   { opacity: 0;    transform: scale(0.6); }
+  30%  { opacity: 0.9;  transform: scale(1); }
+  60%  { opacity: 0.5;  transform: scale(0.8); }
+  80%  { opacity: 1;    transform: scale(1.1); }
+  100% { opacity: 0;    transform: scale(0.6); }
+}
+
+/* Apply CSS vars from inline style */
+.hero-star {
+  --dur: var(--animation-duration, 4s);
+  --delay: var(--animation-delay, 0s);
+}
+
+/* Custom Playful Scrollbar */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-50 dark:bg-[#0a0a0a];
+  border-left: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(to bottom, #0ea5e9, #8b5cf6, #ec4899);
+  border: 4px solid transparent;
+  background-clip: padding-box;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(to bottom, #0284c7, #7c3aed, #db2777);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-image: linear-gradient(to bottom, #0369a1, #6d28d9, #be123c);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}

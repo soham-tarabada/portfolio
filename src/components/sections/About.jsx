@@ -97,13 +97,19 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, scale: 0.8, y: 20 },
-  visible: {
+  hidden: { opacity: 0, scale: 0.85, y: 28 },
+  // custom receives the card index — each card gets progressively snappier spring
+  visible: (i) => ({
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 100 },
-  },
+    transition: {
+      type: "spring",
+      stiffness: 180 + i * 20, // Progressively snappier per card
+      damping: 22,
+      delay: i * 0.08,         // Tighter stagger feels more cohesive
+    },
+  }),
 };
 
 const About = () => {
@@ -178,10 +184,12 @@ const About = () => {
               <motion.div
                 key={i}
                 variants={cardVariants}
+                custom={i}
                 whileHover={{
-                  scale: 1.05,
-                  y: -10,
-                  rotate: i % 2 === 0 ? -2 : 2,
+                  scale: 1.04,
+                  y: -8,
+                  rotate: i % 2 === 0 ? -1.5 : 1.5,
+                  transition: { type: "spring", stiffness: 400, damping: 25 },
                 }}
                 className="glass p-8 rounded-3xl flex flex-col items-start gap-5 hover:shadow-2xl hover:shadow-primary-500/10 transition-all cursor-pointer group bg-white dark:bg-black/40 border border-gray-100 dark:border-white/5"
               >

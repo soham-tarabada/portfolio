@@ -1,11 +1,10 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "../ui/SectionHeading";
 
 const SkillsBg = () => (
   <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-    {/* Cross-hair dot grid */}
     <div
       className="absolute inset-0 opacity-[0.22] dark:opacity-[0.14]"
       style={{
@@ -16,7 +15,6 @@ const SkillsBg = () => (
       }}
     />
 
-    {/* Neon cyan orb — top left */}
     <motion.div
       animate={{ y: [0, -45, 0], x: [0, 30, 0], scale: [1, 1.1, 1] }}
       transition={{ duration: 19, repeat: Infinity, ease: "easeInOut" }}
@@ -24,7 +22,6 @@ const SkillsBg = () => (
       style={{ background: "radial-gradient(circle, #06b6d4, #3b82f6)" }}
     />
 
-    {/* Neon cyan orb — bottom right */}
     <motion.div
       animate={{ y: [0, 40, 0], x: [0, -20, 0], scale: [1, 1.08, 1] }}
       transition={{
@@ -37,7 +34,6 @@ const SkillsBg = () => (
       style={{ background: "radial-gradient(circle, #22d3ee, #818cf8)" }}
     />
 
-    {/* Horizontal scan line 1 */}
     <motion.div
       animate={{ y: ["-100%", "800%"] }}
       transition={{
@@ -53,7 +49,6 @@ const SkillsBg = () => (
       }}
     />
 
-    {/* Horizontal scan line 2 */}
     <motion.div
       animate={{ y: ["-100%", "800%"] }}
       transition={{
@@ -70,7 +65,6 @@ const SkillsBg = () => (
       }}
     />
 
-    {/* Corner accent — bottom left */}
     <div
       className="absolute bottom-0 left-0 w-56 h-56 rounded-full blur-[70px] opacity-15 dark:opacity-8"
       style={{ background: "radial-gradient(circle, #0ea5e9, transparent)" }}
@@ -364,6 +358,17 @@ const Skills = () => {
   const [activeSkill, setActiveSkill] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const timeoutRef = useRef(null);
+  // RAF throttle refs — prevents 60+ React re-renders/second on mouse move
+  const mousePosRef = useRef({ x: 0, y: 0 });
+  const rafRef = useRef(null);
+
+  // Cleanup RAF on unmount
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   const handleMouseEnter = useCallback((skill, e) => {
     clearTimeout(timeoutRef.current);
@@ -372,7 +377,15 @@ const Skills = () => {
   }, []);
 
   const handleMouseMove = useCallback((e) => {
-    setMousePos({ x: e.clientX, y: e.clientY });
+    // Store latest position without triggering a re-render immediately
+    mousePosRef.current = { x: e.clientX, y: e.clientY };
+    // Only schedule one RAF update at a time — caps state updates to ~60fps max
+    if (!rafRef.current) {
+      rafRef.current = requestAnimationFrame(() => {
+        setMousePos({ ...mousePosRef.current });
+        rafRef.current = null;
+      });
+    }
   }, []);
 
   const handleMouseLeave = useCallback(() => {

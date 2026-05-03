@@ -251,6 +251,8 @@ const Contact = () => {
                 <input
                   type="text"
                   id="name"
+                  name="name"
+                  autoComplete="name"
                   required
                   value={formData.name}
                   onChange={(e) =>
@@ -270,6 +272,8 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
+                  name="email"
+                  autoComplete="email"
                   required
                   value={formData.email}
                   onChange={(e) =>
@@ -289,6 +293,8 @@ const Contact = () => {
                 <input
                   type="text"
                   id="subject"
+                  name="subject"
+                  autoComplete="off"
                   required
                   value={formData.subject}
                   onChange={(e) =>
@@ -307,6 +313,8 @@ const Contact = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
+                  autoComplete="off"
                   required
                   rows="4"
                   value={formData.message}

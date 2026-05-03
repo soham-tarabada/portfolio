@@ -303,13 +303,13 @@ const TimelineCard = ({ item, index, isLeft }) => {
 
       {/* Left mobile dot */}
       <div
-        className="md:hidden absolute -left-5 top-7 w-8 h-8 rounded-full flex items-center justify-center z-10 shadow-md flex-shrink-0"
+        className="md:hidden absolute -left-3 sm:-left-5 top-7 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center z-10 shadow-md flex-shrink-0"
         style={{
           background: `linear-gradient(135deg, ${item.color}, ${item.colorEnd})`,
           boxShadow: `0 0 10px 2px ${item.color}35`,
         }}
       >
-        <Icon size={14} className="text-white" />
+        <Icon size={13} className="text-white" />
       </div>
     </div>
   );
@@ -356,7 +356,7 @@ const Timeline = () => {
           </div>
 
           {/* Timeline items */}
-          <div className="space-y-10 md:space-y-8 pl-6 md:pl-0">
+          <div className="space-y-10 md:space-y-8 pl-4 sm:pl-6 md:pl-0">
             {timelineData.map((item, index) => (
               <TimelineCard
                 key={item.id}

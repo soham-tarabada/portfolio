@@ -21,11 +21,17 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 24, filter: "blur(4px)" },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 10 },
+    filter: "blur(0px)",
+    transition: {
+      type: "spring",
+      stiffness: 260, // Higher stiffness = faster settle
+      damping: 28,    // Higher damping = less bounce, more "weighty"
+      mass: 0.8,      // Lighter mass = snappier
+    },
   },
 };
 
@@ -142,7 +148,8 @@ const Hero = () => {
 
           <motion.h1
             variants={itemVariants}
-            className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 tracking-tight dark:text-white"
+            className="font-black mb-6 tracking-tight dark:text-white leading-[1.05]"
+            style={{ fontSize: "clamp(2.5rem, 7vw, 8rem)" }}
           >
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-primary-700 to-gray-900 dark:from-white dark:via-primary-300 dark:to-white">
               Soham Tarabada
@@ -151,7 +158,8 @@ const Hero = () => {
 
           <motion.div
             variants={itemVariants}
-            className="text-2xl md:text-4xl font-bold text-gray-600 dark:text-gray-300 mb-8 h-[60px]"
+            className="font-bold text-gray-600 dark:text-gray-300 mb-8 h-[60px]"
+            style={{ fontSize: "clamp(1.25rem, 2.5vw, 2.25rem)" }}
           >
             <TypeAnimation
               sequence={[

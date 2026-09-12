@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+.vercel/
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+.DS_Store
+.cache/
+coverage/
+.idea/
+.vscode/

@@ -1,0 +1,142 @@
+:root {
+  --ground: #0b0906;
+  --panel: #131009;
+  --panel-raised: #1a150c;
+  --rule: #2e2418;
+  --rule-soft: #201a11;
+
+  --text: #e9deca;
+  --text-muted: #8b7e68;
+  --text-dim: #857e73;
+
+  --phosphor: #ffb000;
+  --phosphor-dim: #c98a1e;
+  --phosphor-deep: #8a5e14;
+  --phosphor-glow: rgba(255, 176, 0, 0.3);
+  --phosphor-wash: rgba(255, 176, 0, 0.028);
+
+  --ok: #7cd97c;
+  --warn: #e5b23c;
+  --alert: #ff6b52;
+
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  --shell-titlebar: 2.25rem;
+  --shell-statusbar: 1.75rem;
+  --shell-tabstrip: 2.25rem;
+  --shell-explorer: 16rem;
+  --shell-gutter: 3rem;
+
+  --syn-key: var(--phosphor);
+  --syn-value: var(--text);
+  --syn-punct: var(--text-muted);
+  --syn-comment: var(--text-dim);
+  --syn-string: var(--phosphor-dim);
+
+  --code-line: 1.9;
+
+  --scroll-size: 0.625rem;
+  --scroll-pad: 2px;
+  --scroll-track: var(--panel);
+  --scroll-track-rule: var(--rule-soft);
+  --scroll-thumb: var(--phosphor-deep);
+  --scroll-thumb-hover: var(--phosphor-dim);
+  --scroll-thumb-active: var(--phosphor);
+  --scroll-thumb-line: rgba(0, 0, 0, 0.34);
+}
+
+@supports (color: color-mix(in srgb, red 50%, blue)) {
+  :root {
+    --scroll-track: color-mix(in srgb, var(--phosphor) 5%, var(--panel));
+    --scroll-thumb: color-mix(in srgb, var(--phosphor) 40%, var(--panel-raised));
+    --scroll-thumb-hover: color-mix(in srgb, var(--phosphor) 68%, var(--panel-raised));
+  }
+}
+
+:root[data-phosphor="green"] {
+  --ground: #050a05;
+  --panel: #0a1109;
+  --panel-raised: #0f180d;
+  --rule: #1d2c1a;
+  --rule-soft: #152013;
+
+  --text: #d4ecd0;
+  --text-muted: #6f8a6b;
+  --text-dim: #71846f;
+
+  --phosphor: #7cd97c;
+  --phosphor-dim: #4faa52;
+  --phosphor-deep: #36703c;
+  --phosphor-glow: rgba(124, 217, 124, 0.28);
+  --phosphor-wash: rgba(124, 217, 124, 0.03);
+
+  --ok: #9ae89a;
+}
+
+:root[data-phosphor="cyan"] {
+  --ground: #060b0c;
+  --panel: #091213;
+  --panel-raised: #0d1a1b;
+  --rule: #182d2e;
+  --rule-soft: #111f20;
+
+  --text: #c8e7ea;
+  --text-muted: #698c8e;
+  --text-dim: #758988;
+
+  --phosphor: #00eeff;
+  --phosphor-dim: #31bcc6;
+  --phosphor-deep: #0e747b;
+  --phosphor-glow: rgba(0, 238, 255, 0.28);
+  --phosphor-wash: rgba(0, 238, 255, 0.03);
+
+  --ok: #7bd987;
+  --warn: #e5ba43;
+  --alert: #ff6d57;
+}
+
+:root[data-phosphor="mono"] {
+  --ground: #08090a;
+  --panel: #0d0e10;
+  --panel-raised: #121416;
+  --rule: #202226;
+  --rule-soft: #16181b;
+
+  --text: #d3d8de;
+  --text-muted: #7f848a;
+  --text-dim: #808386;
+
+  --phosphor: #d5d9de;
+  --phosphor-dim: #a6acb5;
+  --phosphor-deep: #566981;
+  --phosphor-glow: rgba(213, 217, 222, 0.28);
+  --phosphor-wash: rgba(213, 217, 222, 0.03);
+
+  --ok: #79d885;
+  --warn: #e5ba43;
+  --alert: #ff674f;
+}
+
+@media (max-width: 60rem) {
+  :root {
+    --shell-explorer: 15rem;
+    --shell-gutter: 2.25rem;
+    --shell-statusbar: 2.75rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  :root {
+    --shell-gutter: 0rem;
+  }
+}

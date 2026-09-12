@@ -1,0 +1,11 @@
+{
+  "name": "@portfolio/theme",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    "./tokens.css": "./tokens.css",
+    "./phosphors.js": "./phosphors.js",
+    "./global.css": "./global.css"
+  }
+}

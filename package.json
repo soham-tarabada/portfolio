@@ -1,0 +1,26 @@
+{
+  "name": "portfolio-v5",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web,admin -c yellow,green,magenta \"npm:dev:api\" \"npm:dev:web\" \"npm:dev:admin\"",
+    "dev:api": "npm run dev -w @portfolio/api",
+    "dev:web": "npm run dev -w @portfolio/web",
+    "dev:admin": "npm run dev -w @portfolio/admin",
+    "build": "npm run build --workspaces --if-present",
+    "verify": "npm run verify --workspaces --if-present",
+    "seed": "npm run seed -w @portfolio/api",
+    "lint": "npm run lint --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}

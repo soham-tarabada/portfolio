@@ -1,0 +1,113 @@
+.term {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+  border-top: 1px solid var(--rule);
+  background: var(--ground);
+}
+
+.term__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-3);
+  height: 1.9rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 0.6875rem;
+}
+
+.term__title {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--phosphor-deep);
+}
+
+.term__cwd { color: var(--text-dim); }
+.term__spacer { flex: 1; }
+
+.term__action {
+  color: var(--text-dim);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.6875rem;
+}
+
+.term__action:hover { color: var(--phosphor); background: var(--panel-raised); }
+
+.term__scroll {
+  overflow: auto;
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  cursor: text;
+}
+
+.term__entry { margin-bottom: var(--space-3); }
+
+.term__echo {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.15rem;
+}
+
+.term__prompt { color: var(--phosphor-deep); }
+.term__sigil { color: var(--phosphor); }
+.term__command { color: var(--text); }
+
+.term__line {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--text);
+}
+
+.term__line--dim { color: var(--text-muted); }
+.term__line--accent { color: var(--phosphor); }
+.term__line--error { color: var(--alert); }
+.term__line--ok { color: var(--ok); }
+.term__line--link { color: var(--phosphor-dim); }
+
+.term__input-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.term__input {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font: inherit;
+  caret-color: var(--phosphor);
+  padding: 0;
+}
+
+@media (max-width: 60rem) {
+  .term {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: var(--shell-titlebar);
+    height: calc(100dvh - var(--shell-titlebar) - var(--shell-statusbar));
+    z-index: 60;
+    border-top: none;
+    box-shadow: 0 -1px 0 var(--rule);
+  }
+
+  .term__bar { height: 2.5rem; }
+  .term__action { padding: 0.55rem 0.6rem; }
+  .term__scroll { padding: var(--space-3); font-size: 0.75rem; }
+  .term__cwd { display: none; }
+
+  .term__input-row {
+    position: sticky;
+    bottom: 0;
+    padding: var(--space-2) 0;
+    margin-top: var(--space-1);
+    background: var(--ground);
+  }
+}

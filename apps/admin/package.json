@@ -1,0 +1,21 @@
+{
+  "name": "@portfolio/admin",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5174",
+    "build": "vite build",
+    "preview": "vite preview",
+    "verify": "node scripts/verify.mjs"
+  },
+  "dependencies": {
+    "@portfolio/theme": "^0.1.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.1",
+    "vite": "^8.2.2"
+  }
+}
